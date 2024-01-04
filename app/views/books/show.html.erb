@@ -16,13 +16,19 @@
             <% end %>
           </td>
           <td><%= link_to @show_book.title, @show_book %></td>
+          <td>コメント数： <%= @show_book.book_comments.count %></td>
           <td><%= @show_book.body %></td>
+          <td><%= render "favorites/btn", book: @show_book %></td>
+          
           <% if @show_book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@show_book), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @show_book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
           <% end %>
         </tr>
       </table>
+      
+      <%= render "book_comments/index", book: @show_book %>
+      <%= render "book_comments/form", book: @show_book, book_comment: @book_comment %>
     </div>
   </div>
 </div>
