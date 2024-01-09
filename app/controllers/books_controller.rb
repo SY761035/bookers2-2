@@ -2,9 +2,9 @@ class BooksController < ApplicationController
   before_action :matching_login_user, only: [:edit, :update]
 
   def show
-    @book = Book.new
+    @new_book = Book.new
+    @book = Book.find(params[:id])
     @user = @book.user
-    @show_book = Book.find(params[:id])
     @book_comment = BookComment.new
   end
 
